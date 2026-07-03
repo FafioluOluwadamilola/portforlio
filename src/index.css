@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+
+
+@layer components{
+    .header-color {
+      color: #6D5FA8;
+    }
+}
