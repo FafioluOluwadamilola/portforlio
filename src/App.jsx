@@ -1,12 +1,12 @@
-
-import React from 'react'
-import Header from './components/Header'
+import Header from './Components/Header'
+import Hero from './Components/Hero'
 
 const App = () => {
   return (
-    <div>
-      <Header/>
-    </div>
+      <div>
+        <Header/>
+        <Hero />
+      </div>
   )
 }
 

@@ -1,40 +1,45 @@
-import { Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import React from 'react'
 
 const Header = () => {
-  return (
-    <div className='bg-transparent flex justify-between py-5 px-100 h-auto border border-b-2 border-semi-transparent'>
+    return (
+        <header className=" top-0 inset-x-0 z-50 transition-all duration-500 bg-[#f4f3ff]/80 backdrop:blur-2xl border-b border-border" >
 
-        <div>
-            <h2 className='text-black font-bold text-lg'>Dammy.dev</h2>
-        </div>
+            <div className='max-w-7xl mx-auto flex justify-between items-center py-4'>
 
-        <div className='flex gap-6'>
-            <div>
-                <ul className='flex gap-6'>
-                    <li className='header-color'>About</li>
-                    <li className='header-color'>Skills</li>
-                    <li className='header-color'>Projects</li>
-                    <li className='header-color'>Contact</li>
-                </ul>
+                <div>
+                    <h2 className='text-black font-bold text-lg'>Dammy.dev</h2>
+                </div>
+
+                <div className='flex gap-6 items-center font-semibold'>
+                    <div>
+                        <ul className='flex gap-6'>
+                            <li className='header-color'>About</li>
+                            <li className='header-color'>Skills</li>
+                            <li className='header-color'>Projects</li>
+                            <li className='header-color'>Contact</li>
+                        </ul>
+                    </div>
+
+
+
+                    {/* Sun and Moon for dark and light mode */}
+                    <div className='flex gap-2 bg-gray-100 rounded-full p-0.5'>
+                        <Sun className='text-gray-500 rounded-full hover:text-black hover:animate-spin' />
+                        <Moon className='text-gray-500 rounded-full hover:text-black' />
+                    </div>
+
+                    <div>
+                        <button className='bg-[#7c3aed] rounded-full hover:opacity-90 transition-opacity text-white text-sm font-bold px-5 py-2 '>
+                            Hire Me
+                        </button>
+                    </div>
+
+                </div>
+
             </div>
-
-
-            {/* Sun and Moon for dark and light mode */}
-            <div>
-                <Sun className='bg-gray-100 '/>
-            </div>
-
-            <div>
-                <button className='bg-[#A78BFA]'>
-                    Hire Me
-                </button>
-            </div>
-
-        </div>
-
-    </div>
-  )
+        </header>
+    )
 }
 
 export default Header
