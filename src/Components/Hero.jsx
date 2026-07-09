@@ -11,7 +11,7 @@ const Hero = () => {
             </div>
 
             <div className='text-center'>
-                <h1 className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] font-bold'>
+                <h1 className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] font-bold letter-tight tracking-tighter'>
                     Full-Stack <span className='header-color'><br />Developer.</span>
                 </h1>
             </div>
@@ -27,28 +27,28 @@ const Hero = () => {
 
             <div className='flex gap-10'>
                 <ol>
-                    <li>
+                    <li className='stats'>
                         6+
                     </li>
-                    <li>Years exp.</li>
+                    <li className='header-color'>Years exp.</li>
                 </ol>
                 <ol>
-                    <li>
+                    <li className='stats'>
                         40+
                     </li>
-                    <li>Projects shipped</li>
+                    <li className='header-color'>Projects shipped</li>
                 </ol>
                 <ol>
-                    <li>
+                    <li className='stats'>
                         12k+
                     </li>
-                    <li>GitHub stars</li>
+                    <li className='header-color'>GitHub stars</li>
                 </ol>
                 <ol>
-                    <li>
+                    <li className='stats'>
                         99.9%
                     </li>
-                    <li>Uptime avg.</li>
+                    <li className='header-color'>Uptime avg.</li>
                 </ol>
             </div>
 
