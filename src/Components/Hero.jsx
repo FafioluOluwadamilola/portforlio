@@ -1,18 +1,23 @@
-import { Dot } from 'lucide-react'
-import React from 'react'
+import { ArrowUpRight } from 'lucide-react'
+import { motion } from "motion/react"
 
 const Hero = () => {
     return (
         <div className='max-w-5xl w-full mx-auto flex items-center justify-center h-auto gap-10 flex-col mt-25'>
 
-            <div className='flex gap-2 items-center border border-gray-300 rounded-full px-4 py-2'>
-                <Dot className='w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse' />
-                <span className='text-[#6D5FA8] font-light'>AVAILABLE FOR REMOTE OPPORTUNITIES</span>
+            <div className='flex gap-2 items-center border border-gray-200 rounded-full px-4 py-1'>
+                <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse' />
+                <span className='text-[#6D5FA8] text-sm font-light tracking-widest'>AVAILABLE FOR REMOTE OPPORTUNITIES</span>
             </div>
 
             <div className='text-center'>
-                <h1 className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] font-bold letter-tight tracking-tighter'>
-                    Full-Stack <span className='header-color'><br />Developer.</span>
+                <h1 className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] font-extrabold tracking-tighter'>
+                    Full-Stack 
+                    <span 
+                        className='header-color'
+                    >   <br />
+                        Developer <span className='w-1.5 h-1.5 bg-[#0F8BB5] animate-pulse'>.</span>
+                    </span>
                 </h1>
             </div>
 
@@ -21,35 +26,47 @@ const Hero = () => {
             </div>
 
             <div className='flex gap-2 mb-9'>
-                <button className='bg-[#7c3aed] rounded-full hover:opacity-90 transition-opacity text-white text-sm font-bold px-7 py-3'>View Projects</button>
-                <button className='border border-[#7c3aed] text-[#7c3aed] hover:bg-[#7c3aed] hover:text-white rounded-full transition-colors text-sm font-bold px-5 py-5'>Get in Touch</button>
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className='bg-[#7c3aed] flex items-center rounded-full hover:opacity-90 transition-opacity text-white text-sm font-bold py-4 px-7 shadow-lg'>
+                    View projects 
+                    <ArrowUpRight className='w-4 h-4 ml-2' />
+                </motion.button>
+
+                <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className='border border-gray-200 bg-transparent  hover:bg-transparent  rounded-full transition-colors text-sm font-bold py-5 px-4'>
+                        Get in Touch
+                </motion.button>
             </div>
 
             <div className='flex gap-10'>
-                <ol>
-                    <li className='stats'>
+                <div>
+                    <div className='stats'>
                         6+
-                    </li>
-                    <li className='header-color'>Years exp.</li>
-                </ol>
-                <ol>
-                    <li className='stats'>
+                    </div>
+                    <div className='header-color'>Years exp.</div>
+                </div>
+                <div>
+                    <div className='stats'>
                         40+
-                    </li>
-                    <li className='header-color'>Projects shipped</li>
-                </ol>
-                <ol>
-                    <li className='stats'>
+                    </div>
+                    <div className='header-color'>Projects shipped</div>
+                </div>
+                <div>
+                    <div className='stats'>
                         12k+
-                    </li>
-                    <li className='header-color'>GitHub stars</li>
-                </ol>
-                <ol>
-                    <li className='stats'>
+                    </div>
+                    <div className='header-color'>GitHub stars</div>
+                </div>
+                <div>
+                    <div className='stats'>
                         99.9%
-                    </li>
-                    <li className='header-color'>Uptime avg.</li>
-                </ol>
+                    </div>
+                    <div className='header-color'>Uptime avg.</div>
+                </div>
             </div>
 
         </div>

@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <header className=" top-0 inset-x-0 z-50 transition-all duration-500 bg-[#f4f3ff]/80 backdrop:blur-2xl border-b border-border" >
 
-            <div className='max-w-7xl mx-auto flex justify-between items-center py-4'>
+            <div className='max-w-7xl sm:max-w-3xl md:max-w-4xl mx-auto flex justify-between items-center py-4 '>
 
                 <div>
                     <h2 className='text-black font-bold text-lg'>Dammy.dev</h2>
