@@ -3,7 +3,7 @@ import { motion } from "motion/react"
 
 const Hero = () => {
     return (
-        <div className='max-w-5xl w-full mx-auto flex items-center justify-center h-auto gap-10 flex-col mt-25'>
+        <div className='max-w-5xl w-full mx-auto flex items-center justify-center h-auto gap-10 flex-col mt-25 mb-20'>
 
             <div className='flex gap-2 items-center border border-gray-200 rounded-full px-4 py-1'>
                 <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse' />
@@ -13,16 +13,12 @@ const Hero = () => {
             <div className='text-center'>
 
                 <h1 
-                    className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] tracking-tighter heading-font'>
+                    className='leading-none text-6xl sm:text-7xl md:text-8xl lg:text-[108px] tracking-tight heading-font'>
                     Full-Stack
                     <br />
 
-                    <span className='header-color'>
-                        Developer
-                    </span>
-
-                    <span className='text-[#0F8BB5] animate-pulse'>
-                        .
+                    <span className='text-gradient'>
+                            Developer.                        
                     </span>
 
                 </h1>
@@ -32,10 +28,10 @@ const Hero = () => {
 
 
             <div className='text-center mb-6'>
-                <p className='header-color text-xl text-muted-foreground leading-relaxed max-w-xl tracking-wider main-font'>I build scalable systems, elegant interfaces, and open-source tools that engineers actually want to use. 6 years in production.</p>
+                <p className='header-color text-xl text-muted-foreground leading-relaxed max-w-xl tracking-wide main-font'>I build scalable systems, elegant interfaces, and open-source tools that engineers actually want to use. 6 years in production.</p>
             </div>
 
-            <div className='flex gap-2 mb-9'>
+            <div className='flex gap-5 mb-9'>
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -47,7 +43,7 @@ const Hero = () => {
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className='border border-gray-200 bg-transparent  hover:bg-transparent  rounded-full transition-colors text-sm font-bold py-5 px-4'>
+                    className='border border-gray-200 bg-transparent  hover:bg-transparent  rounded-full transition-colors text-sm font-bold py-4 px-6'>
                     Get in Touch
                 </motion.button>
             </div>
