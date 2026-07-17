@@ -3,7 +3,7 @@ import { motion } from "motion/react"
 
 const Hero = () => {
     return (
-        <div className='max-w-5xl w-full mx-auto flex items-center justify-center h-auto gap-10 flex-col mt-25 mb-20 z-20'>
+        <div className='max-w-5xl w-full mx-auto flex items-center justify-center h-auto gap-10 flex-col pt-20 mb-20'>
 
             <div className='flex gap-2 items-center border border-gray-200 rounded-full px-4 py-1 bg-white'>
                 <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse' />

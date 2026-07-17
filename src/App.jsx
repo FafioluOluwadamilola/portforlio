@@ -1,13 +1,14 @@
-import Background from './Components/Background'
-import Header from './Components/Header'
-import Hero from './Components/Hero'
+import Header from "./Components/Header"
+import AboutSection from "./Sections/AboutSection"
+import HeroSection from "./Sections/HeroSection"
+
 
 const App = () => {
   return (
     <div>
-      <Background />
       <Header />
-        <Hero />
+      <HeroSection />
+      <AboutSection />
     </div>
   )
 }
