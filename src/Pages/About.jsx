@@ -1,10 +1,14 @@
 import { GitForkIcon, Link } from "lucide-react"
+import BackgroundBlob from "../Components/BackgroundBlob"
 
 const About = () => {
     return (
-        <div className="w-full relative overflow-hidden">
+        <div className="w-full min-h-screen relative overflow-hidden">
 
-            <div className=" max-w-6xl mx-auto justify-center items-center grid grid-cols-2 gap-20 mt-30 main-font">
+
+            <div className=" max-w-6xl mx-auto justify-center items-center grid grid-cols-2 gap-20 mt-30 main-font overflow-hidden">
+            
+            <BackgroundBlob color="#7C3AED" style={{ top: "-100px", right: "-80px" }} />
 
                 <div className="grid grid-rows-2 gap-3">
                     <div>
