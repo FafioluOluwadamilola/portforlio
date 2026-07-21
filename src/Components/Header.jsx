@@ -2,7 +2,7 @@ import { Moon, Sun } from 'lucide-react'
 
 const Header = () => {
     return (
-        <header className="sticky top-0 inset-x-0 z-20 transition-all duration-500 border-b border-border" >
+        <header className="sticky top-0 inset-x-0 z-20 transition-all duration-500 border-b border-border overflow-hidden" >
 
             <div className='max-w-7xl sm:max-w-3xl md:max-w-4xl mx-auto flex justify-between items-center py-4 '>
 

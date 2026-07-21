@@ -1,6 +1,7 @@
 import Header from "./Components/Header"
 import About from "./Pages/About"
 import Hero from "./Pages/Hero"
+import Skills from "./Pages/Skills"
 
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
       <Header />
       <Hero />
       <About />
+      <Skills />
     </div>
   )
 }

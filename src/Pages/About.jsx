@@ -24,7 +24,7 @@ const About = () => {
                             className="w-full h-74 object-cover rounded-2xl"
                         />
 
-                        <span className="w-full h-74 rounded-2xl bg-gradient-to-r from-[#7C3AED] to-[#0891b2] text-white text-center flex items-center justify-center p-4">
+                        <span className="w-full h-74 rounded-2xl bg-linear-to-r from-[#7C3AED] to-[#0891b2] text-white text-center flex items-center justify-center p-4">
                             6+<br />
                             Years building production software
                         </span>
@@ -58,7 +58,7 @@ const About = () => {
                     <div className="flex gap-2">
                         <a 
                             href="https://github.com/FafioluOluwadamilola"
-                            className="w-fit px-6 py-3 bg-gradient-to-r from-[#7C3AED] to-[#0891b2] text-white rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex"
+                            className="w-fit px-6 py-3 bg-linear-to-r from-[#7C3AED] to-[#0891b2] text-white rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -68,7 +68,7 @@ const About = () => {
     
                         <a 
                             href="https://www.linkedin.com/in/oluwadamilola-fafiolu-410096325"
-                            className="w-fit px-6 py-3 bg-gradient-to-r from-[#7C3AED] to-[#0891b2] text-white rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex"
+                            className="w-fit px-6 py-3 bg-linear-to-r from-[#7C3AED] to-[#0891b2] text-white rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex"
                             target="_blank"
                             rel="noopener noreferrer"
                         >

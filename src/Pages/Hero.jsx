@@ -4,7 +4,7 @@ import BackgroundBlob from '../Components/BackgroundBlob'
 
 const Hero = () => {
     return (
-        <div className='min-h-screen relative overflow-hidden w-full bg-gradient-to-b from-white to-purple-200'>
+        <div className='min-h-screen relative overflow-hidden w-full bg-linear-to-b from-white to-purple-200'>
             
             <div className='max-w-5xl mx-auto flex items-center justify-center gap-10 flex-col pt-20 mb-20'>
 
