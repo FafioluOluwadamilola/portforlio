@@ -2,7 +2,7 @@ import { Code, Globe } from "lucide-react";
 
 const Skills = () => {
 
-    const skills = [
+    const skillData = [
         {
             name: "HTML",
             icon: Code 
@@ -91,7 +91,7 @@ const Skills = () => {
 
 
     return (
-        <div className="bg-[#F4F3FF] border-t border-b border-[#D8D6FF] w-full h-screen/2 p-20  mx-auto overflow-hidden">
+        <div className="bg-[#F4F3FF] border-t border-b border-[#D8D6FF] w-full h-screen/2 p-20  mx-auto">
 
             <div className=" max-w-5xl lg:max-w-6xl sm:max-w-full mx-auto">
 
@@ -108,7 +108,7 @@ const Skills = () => {
     
                 <div className="flex flex-wrap gap-4">
                         {
-                            skills.map((skill) => {
+                            skillData.map((skill) => {
                                 const Icon = skill.icon;
     
                                 return (
