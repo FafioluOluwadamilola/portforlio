@@ -1,4 +1,5 @@
 import { Code, Globe } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Skills = () => {
 
@@ -106,21 +107,39 @@ const Skills = () => {
     
                 </div>
     
-                <div className="flex flex-wrap gap-4">
+                <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: {opacity: 0},
+                        visible: {opacity: 1, 
+                            transition: {
+                                staggerChildren: 0.1
+                            }
+                        }
+                    }}
+                    className="flex flex-wrap gap-4"
+                >
                         {
                             skillData.map((skill) => {
                                 const Icon = skill.icon;
     
                                 return (
-                                    <button key={skill.name} className="flex items-center bg-[#D8D6FF] text-[#7C3AED] px-4 py-2 rounded-full text-sm font-semibold">
+                                    <motion.button 
+                                        key={skill.name} 
+                                        variants={{
+                                            hidden: {opacity: 0, y: 20},
+                                            visible: {opacity: 1, y: 0}
+                                        }}
+                                        className="flex items-center bg-[#D8D6FF] text-[#7C3AED] px-4 py-2 rounded-full text-sm font-semibold">
                                         <Icon />
                                         <span className="ml-2">{skill.name}</span>
-                                    </button>
+                                    </motion.button>
                                 );
                             })
                         }
     
-                </div>
+                </motion.div>
 
             </div>
             
