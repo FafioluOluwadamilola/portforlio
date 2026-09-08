@@ -1,18 +1,41 @@
 import { ArrowUpRight, Dot } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useTransform, useMotionValue } from "framer-motion"
 
 const ProjectCards = ({ project }) => {
+
+  const mouseX = useMotionValue(0); //Horizontal mouse position
+  const mouseY = useMotionValue(0); //Vertical mouse position
+
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10])
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    mouseX.set(x);
+    mouseY.set(y);
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
     
-    <div>
+    <div className="perspective-[1000px]">
 
       <motion.div 
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ 
-          rotateX: 5,
-          rotateY: -5,
-          y: -10
+        style ={{ 
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
         }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className=" flex justify-center max-w-6xl mx-auto p-4">
@@ -20,6 +43,7 @@ const ProjectCards = ({ project }) => {
         <div className="relative">
 
           <div className="overflow-hidden rounded-2xl">
+            
             <a href={project.link} target="_blank" rel="noopener noreferrer">
               <motion.img
                 whileHover={{scale: 1.03}}
