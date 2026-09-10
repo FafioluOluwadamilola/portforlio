@@ -1,13 +1,38 @@
 import { ArrowUpRight, Dot } from "lucide-react"
-import { motion, useTransform, useMotionValue } from "framer-motion"
+import { motion, useTransform, useMotionValue, useSpring } from "framer-motion"
 
-const ProjectCards = ({ project }) => {
+const ProjectCards = ({ project, scrollYProgress }) => {
 
-  const mouseX = useMotionValue(0); //Horizontal mouse position
-  const mouseY = useMotionValue(0); //Vertical mouse position
+  const mouseX = useMotionValue(0); 
+  const mouseY = useMotionValue(0); 
+
+  const glowX = useMotionValue(50);
+  const glowY = useMotionValue(50);
+
+  const scrollYProgressTest = useTransform(scrollYProgress, [0, 1,], [0, 300])
 
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10])
+
+  const springRotateY = useSpring(rotateY,{
+    stiffness: 300,
+    damping: 20,
+  })
+
+  const springRotateX = useSpring(rotateX, {
+    stiffness: 800,
+    damping: 20,
+  })
+
+  const springGlowX = useSpring(glowX, {
+    stiffness: 300,
+    damping: 20,
+  })
+
+  const springGlowY = useSpring(glowY, {
+    stiffness: 300,
+    damping: 20,
+  })
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -16,16 +41,26 @@ const ProjectCards = ({ project }) => {
 
     mouseX.set(x);
     mouseY.set(y);
+
+    glowX.set((e.clientX - rect.left) / rect.width * 100);
+    glowY.set((e.clientY - rect.top) / rect.height * 100);
   }
 
   const handleMouseLeave = () => {
-    mouseX.set(0);
+    mouseX.set(0);  
     mouseY.set(0);
+    glowX.set(50);
+    glowY.set(50);
   };
+
+  const glowBackground = useTransform(
+    [springGlowX, springGlowY],
+    ([x, y]) => `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.25), transparent 40%)`
+  );
 
   return (
     
-    <div className="perspective-[1000px]">
+    <div className="absolute inset-0 flex items-center justify-center perspective-[1000px]">
 
       <motion.div 
         onMouseMove={handleMouseMove}
@@ -33,9 +68,11 @@ const ProjectCards = ({ project }) => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         style ={{ 
-          rotateX,
-          rotateY,
+          rotateX: springRotateX,
+          rotateY: springRotateY,
           transformStyle: "preserve-3d",
+          x: 0,
+          y: scrollYProgressTest
         }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className=" flex justify-center max-w-6xl mx-auto p-4">
@@ -58,6 +95,12 @@ const ProjectCards = ({ project }) => {
 
           {/* background gradient */}
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent rounded-2xl pointer-events-none"></div>
+
+          {/* Glow Backgound */}
+          <motion.div 
+            style={{ background: glowBackground }} 
+            className="absolute inset-0 rounded-2xl pointer-events-none"/>
+            
 
           {/* top information */}
           <div className="w-full absolute top-0 flex justify-between items-center pointer-events-none p-10">
