@@ -40,8 +40,14 @@ const Projects = () => {
 
                         <div className="relative w-full h-full">
                             {
-                                projectData.map((project) => (
-                                    <ProjectCards key={project.name} project={project} scrollYProgress={scrollYProgress} />
+                                projectData.map((project, index) => (
+                                    <ProjectCards 
+                                        key={project.name} 
+                                        project={project} 
+                                        scrollYProgress={scrollYProgress} 
+                                        projectIndex={index} 
+                                        projectLength={projectData.length} 
+                                    />
                                 ))
                             }
 

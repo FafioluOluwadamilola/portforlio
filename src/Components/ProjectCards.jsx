@@ -1,7 +1,7 @@
 import { ArrowUpRight, Dot } from "lucide-react"
 import { motion, useTransform, useMotionValue, useSpring } from "framer-motion"
 
-const ProjectCards = ({ project, scrollYProgress }) => {
+const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength }) => {
 
   const mouseX = useMotionValue(0); 
   const mouseY = useMotionValue(0); 
@@ -9,7 +9,29 @@ const ProjectCards = ({ project, scrollYProgress }) => {
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
 
-  const scrollYProgressTest = useTransform(scrollYProgress, [0, 1,], [0, 300])
+  const cardPortion = projectIndex / projectLength;
+
+  const cardSpace = 1 / projectLength;
+
+  const cardEnd = cardPortion + cardSpace;
+
+  const scrollYProgressTest = useTransform(
+    scrollYProgress,
+    [cardPortion, cardEnd],
+    [0, 300]
+  )
+
+  const scrollOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0, 1, 0]
+  )
+
+  const scrollScale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.8, 1, 0.8]
+  )
 
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10])
@@ -72,7 +94,9 @@ const ProjectCards = ({ project, scrollYProgress }) => {
           rotateY: springRotateY,
           transformStyle: "preserve-3d",
           x: 0,
-          y: scrollYProgressTest
+          y: scrollYProgressTest,
+          opacity: scrollOpacity,
+          scale: scrollScale
         }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className=" flex justify-center max-w-6xl mx-auto p-4">
