@@ -9,11 +9,15 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
 
-  const cardPortion = projectIndex / projectLength;
+  const cardPortion = projectIndex / projectLength; // The portion of the scroll that this card occupies
 
-  const cardSpace = 1 / projectLength;
+  const cardSpace = 1 / projectLength; // The space that each card occupies in the scroll range
 
   const cardEnd = cardPortion + cardSpace;
+
+  const opacityScroll = (cardEnd + cardPortion) / 2;
+
+  const fadeSpace = (cardSpace *20) / 100; // 20% of the card space for fading
 
   const scrollYProgressTest = useTransform(
     scrollYProgress,
@@ -23,8 +27,13 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
 
   const scrollOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [0, 1, 0]
+    [ 
+      cardPortion - fadeSpace, 
+      opacityScroll, 
+      opacityScroll + fadeSpace, 
+      cardEnd 
+    ],
+    [0, 1, 1, 0]
   )
 
   const scrollScale = useTransform(
