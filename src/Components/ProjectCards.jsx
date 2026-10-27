@@ -17,12 +17,23 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
 
   const opacityScroll = (cardEnd + cardPortion) / 2;
 
-  const fadeSpace = (cardSpace *20) / 100; // 20% of the card space for fading
+  const fadeSpace = (cardSpace * 35 ) / 100; // 20% of the card space for fading
+
+  const cardX = projectIndex * 100
+
+  const cardY = projectIndex * -60
+
+  const cardYmovement = cardY + scrollYProgress
 
   const scrollYProgressTest = useTransform(
     scrollYProgress,
     [cardPortion, cardEnd],
     [0, 300]
+  )
+
+  const cardYposition = useTransform(
+    scrollYProgressTest,
+    (scrollY) => cardY + scrollY
   )
 
   const scrollOpacity = useTransform(
@@ -38,8 +49,13 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
 
   const scrollScale = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [0.8, 1, 0.8]
+    [
+      cardPortion - fadeSpace,
+      opacityScroll,
+      opacityScroll + fadeSpace,
+      cardEnd
+    ],
+    [0.75, 1.08, 1.08, 0.75]
   )
 
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
@@ -91,7 +107,12 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
 
   return (
     
-    <div className="absolute inset-0 flex items-center justify-center perspective-[1000px]">
+    <div 
+      className="absolute inset-0 flex items-center justify-center perspective-[1000px]"
+      style={{
+        zIndex: projectIndex
+      }}
+    >
 
       <motion.div 
         onMouseMove={handleMouseMove}
@@ -102,8 +123,8 @@ const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength })
           rotateX: springRotateX,
           rotateY: springRotateY,
           transformStyle: "preserve-3d",
-          x: 0,
-          y: scrollYProgressTest,
+          x: cardX,
+          y: cardYposition,
           opacity: scrollOpacity,
           scale: scrollScale
         }}
