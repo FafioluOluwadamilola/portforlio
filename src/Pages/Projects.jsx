@@ -1,15 +1,8 @@
+// import { projectData } from "../Data/Projects"
+
 import ProjectCards from "../Components/ProjectCards"
-import { useRef } from "react"
-import { projectData } from "../Data/Projects"
-import { useScroll } from "framer-motion"
 
 const Projects = () => {
-
-    const scrollRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: scrollRef,
-        offset: ["start end", "end start"]
-    })
 
     return (
 
@@ -32,32 +25,8 @@ const Projects = () => {
 
                 </div>
 
-                <div 
-                    ref={scrollRef}
-                    className="relative h-[400vh]">
-
-                    <div className="sticky top-0 h-screen flex items-center justify-center">
-
-                        <div className="relative w-full h-full">
-                            {
-                                projectData.map((project, index) => (
-                                    <ProjectCards 
-                                        key={project.name} 
-                                        project={project} 
-                                        scrollYProgress={scrollYProgress} 
-                                        projectIndex={index} 
-                                        projectLength={projectData.length} 
-                                    />
-                                ))
-                            }
-
-                            <div className="text-4xl">
-                                {scrollYProgress.get()}
-                            </div>
-                        </div>
-
-                    </div>
-
+                <div className="relative h-[80%] w-full">
+                    <ProjectCards />
                 </div>
 
             </div>

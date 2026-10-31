@@ -1,196 +1,39 @@
-import { ArrowUpRight, Dot } from "lucide-react"
-import { motion, useTransform, useMotionValue, useSpring } from "framer-motion"
+import { projectData } from "../Data/Projects"
 
-const ProjectCards = ({ project, scrollYProgress, projectIndex, projectLength }) => {
-
-  const mouseX = useMotionValue(0); 
-  const mouseY = useMotionValue(0); 
-
-  const glowX = useMotionValue(50);
-  const glowY = useMotionValue(50);
-
-  const cardPortion = projectIndex / projectLength; // The portion of the scroll that this card occupies
-
-  const cardSpace = 1 / projectLength; // The space that each card occupies in the scroll range
-
-  const cardEnd = cardPortion + cardSpace;
-
-  const opacityScroll = (cardEnd + cardPortion) / 2;
-
-  const fadeSpace = (cardSpace * 35 ) / 100; // 20% of the card space for fading
-
-  const cardX = projectIndex * 100
-
-  const cardY = projectIndex * -60
-
-  const cardYmovement = cardY + scrollYProgress
-
-  const scrollYProgressTest = useTransform(
-    scrollYProgress,
-    [cardPortion, cardEnd],
-    [0, 300]
-  )
-
-  const cardYposition = useTransform(
-    scrollYProgressTest,
-    (scrollY) => cardY + scrollY
-  )
-
-  const scrollOpacity = useTransform(
-    scrollYProgress,
-    [ 
-      cardPortion - fadeSpace, 
-      opacityScroll, 
-      opacityScroll + fadeSpace, 
-      cardEnd 
-    ],
-    [0, 1, 1, 0]
-  )
-
-  const scrollScale = useTransform(
-    scrollYProgress,
-    [
-      cardPortion - fadeSpace,
-      opacityScroll,
-      opacityScroll + fadeSpace,
-      cardEnd
-    ],
-    [0.75, 1.08, 1.08, 0.75]
-  )
-
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10])
-
-  const springRotateY = useSpring(rotateY,{
-    stiffness: 300,
-    damping: 20,
-  })
-
-  const springRotateX = useSpring(rotateX, {
-    stiffness: 800,
-    damping: 20,
-  })
-
-  const springGlowX = useSpring(glowX, {
-    stiffness: 300,
-    damping: 20,
-  })
-
-  const springGlowY = useSpring(glowY, {
-    stiffness: 300,
-    damping: 20,
-  })
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    mouseX.set(x);
-    mouseY.set(y);
-
-    glowX.set((e.clientX - rect.left) / rect.width * 100);
-    glowY.set((e.clientY - rect.top) / rect.height * 100);
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);  
-    mouseY.set(0);
-    glowX.set(50);
-    glowY.set(50);
-  };
-
-  const glowBackground = useTransform(
-    [springGlowX, springGlowY],
-    ([x, y]) => `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.25), transparent 40%)`
-  );
-
+const ProjectCards = () => {
   return (
-    
-    <div 
-      className="absolute inset-0 flex items-center justify-center perspective-[1000px]"
-      style={{
-        zIndex: projectIndex
-      }}
-    >
+    <div>
+      <div>
 
-      <motion.div 
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        style ={{ 
-          rotateX: springRotateX,
-          rotateY: springRotateY,
-          transformStyle: "preserve-3d",
-          x: cardX,
-          y: cardYposition,
-          opacity: scrollOpacity,
-          scale: scrollScale
-        }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className=" flex justify-center max-w-6xl mx-auto p-4">
+      {
+        projectData.map((project, index) => (
 
-        <div className="relative">
+          <div key={index} className= "project-card">
 
-          <div className="overflow-hidden rounded-2xl">
+            <h2>{project.name}</h2>
+            <p>{project.type}</p>
+            <p>{project.description}</p>
+
+            <p>{project.technologies.map((technology) => 
+              <span key={index} className="mr-2">
+                {technology}
+              </span>
+            )} </p>
+
+            <p>{project.link}</p>
+            <p>{project.year}</p>
             
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
-              <motion.img
-                whileHover={{scale: 1.03}}
-                transition={{duration: 0.1}}
-                src={project.image}
-                alt={project.name}
-                className="w-250 h-150 object-cover rounded-2xl blur-[0px] hover:blur-[2px] transition-all duration-300"
-              />
-            </a>
-  
-          </div>
-
-          {/* background gradient */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent rounded-2xl pointer-events-none"></div>
-
-          {/* Glow Backgound */}
-          <motion.div 
-            style={{ background: glowBackground }} 
-            className="absolute inset-0 rounded-2xl pointer-events-none"/>
-            
-
-          {/* top information */}
-          <div className="w-full absolute top-0 flex justify-between items-center pointer-events-none p-10">
-            <div className="jetbrains-font  flex gap-2 items-center p-4 text-white text-sm tracking-wider pointer-events-none">
-              <p className="">{project.type}</p>
-              <Dot className="font-bold size-10" />
-              <p className="">{project.year}</p>
-            </div>
-
-            <div>
-              <ArrowUpRight className=" m-4 bg-white/20 rounded-full p-2 text-white size-10 pointer-events-none" />
-            </div>
+            <img 
+              src={project.image} 
+              alt={project.name} 
+              className="project-image">
+            </img>
 
           </div>
+        ))
+      }
 
-          {/* bottom information */}
-          <div className="absolute bottom-20 left-0 bg-opacity-90 p-10 rounded-lg text-white pointer-events-none">
-
-            <h2 className="text-6xl font-bold">{project.name}</h2>
-            <p className=" mt-2 text-lg max-w-md">{project.description}</p>
-
-            <div className="mt-3 flex gap-2">
-              {project.technologies.map((technology) => (
-                <span className="px-2 py-2 bg-white/25 text-white rounded-full text-sm jetbrains-font">
-                  {technology}
-                </span>
-              ))}
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </motion.div>
-
+      </div>
     </div>
   )
 }
