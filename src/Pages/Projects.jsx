@@ -25,8 +25,10 @@ const Projects = () => {
 
                 </div>
 
-                <div className="relative h-[80%] w-full">
-                    <ProjectCards />
+                <div className="relative h-[400vh]">
+                    <div className="sticky top-0 h-screen w-full overflow-hidden">
+                        <ProjectCards />
+                    </div>
                 </div>
 
             </div>
