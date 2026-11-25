@@ -1,8 +1,16 @@
-// import { projectData } from "../Data/Projects"
-
+import { useRef } from "react"
+import { useScroll } from "motion/react"
 import ProjectCards from "../Components/ProjectCards"
 
 const Projects = () => {
+
+    const scrollRef = useRef(null)
+
+    const { scrollYProgress } = useScroll({
+        target: scrollRef,
+        offset: ["start start", "end end"]
+    })
+
 
     return (
 
@@ -25,9 +33,12 @@ const Projects = () => {
 
                 </div>
 
-                <div className="relative h-[400vh]">
+                <div 
+                    className="relative h-[400vh]"
+                    ref={scrollRef}
+                    >
                     <div className="sticky top-0 h-screen w-full overflow-hidden">
-                        <ProjectCards />
+                        <ProjectCards scrollYProgress={scrollYProgress} />
                     </div>
                 </div>
 
